@@ -18,7 +18,7 @@ export default function () {
                 dataUser.value = res.user;
                 store.dispatch('fetchLogin',res.user );
                 localStorage.setItem('access_token', res.accessToken);
-                router.push('/');
+                router.push('/system');
             } else {
                 errorLogin.value = res.errMessage;
             }

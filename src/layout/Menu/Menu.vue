@@ -1,11 +1,11 @@
 <template>
     <header class="flex justify-between bg-mainColor text-white h-[40px] relative">
-        <MenuList items="{MENU_ITEMS}" />
+        <Menulist v-bind:items="MENU_ITEMS" />
         <div class="header-tabs-container"></div>
         <div class="flex items-center gap-2 mr-[5%]">
             <span class="mr-[10px]" v-if="local === 'en'"> {{ profile.firstName }} {{ profile.lastName }}</span>
             <span class="mr-[10px]" v-else-if="local === 'vn'"> {{ profile.lastName }} {{ profile.firstName }}</span>
-            <span>{{ url.name }}</span>
+            <span></span>
             <span :class="{ 'text-red-700 cursor-pointer': local === 'vn' }" class="cursor-pointer">
                 <span value="vn" @click.prevent="callSetLangActions('vn')">VN</span>
             </span>
@@ -23,71 +23,79 @@
 import { computed , ref} from 'vue';
 import { useStore } from 'vuex';
 import i18n from '@/language/i18n';
+import { useI18n } from 'vue-i18n';
+import Menulist from "@/layout/Menu/MenuList.vue"
 export default {
     setup() {
+        const {t} = useI18n()
         const MENU_ITEMS = [
         {
-            title: `${$t('menu.admin.user')}`,
-            // children: {
-            //     title: 'user',
-            //     data: [
-            //         {
-            //             type: 'user',
-            //             to  : '/system/manager-user',
-            //             title: t('menu.admin.manage-user'),
-            //         },
-            //            {
-            //             type: 'user',
-            //             to  : '/system/manager-doctor',
-            //             title: t('menu.admin.manage-doctor'),
-            //         },
-            //            {
-            //             type: 'user',
-            //             to  : '/system/manager-schedule',
-            //             title:  t('menu.doctor.manage-schedule'),
-            //         },
-            //     ],
-            // },
+             title: 'menu.admin.user',
+            children: {
+                title: 'user',
+                data: [
+                    {
+                        type: 'user',
+                        to  : '/system/manager-user',
+                        title: 'menu.admin.manage-user',
+                    },
+                    {
+                        type: 'user',
+                        to  : '/system/manager-account',
+                        title: 'menu.admin.manage-account',
+                    },
+                       {
+                        type: 'user',
+                        to  : '/system/manager-doctor',
+                        title: 'menu.admin.manage-doctor',
+                    },
+                       {
+                        type: 'user',
+                        to  : '/system/manager-schedule',
+                        title: 'menu.doctor.manage-schedule',
+                    },
+                ],
+            },
         },
-        //   {
-        //     title: t('menu.admin.clinic'),
-        //     children: {
-        //         title: 'clinic',
-        //         data: [
-        //             {
-        //                 type: 'clinic',
-        //                 to : '/system/manager-clinic',
-        //                 title: t('menu.admin.manage-clinic'),
-        //             }
-        //         ],
-        //     },
-        // },
-        //   {
-        //     title: t('menu.admin.specialty'),
-        //     children: {
-        //         title: 'special',
-        //         data: [
-        //             {
-        //                 type: 'special',
-        //                 to : '/system/manager-special',
-        //                 title: t('menu.admin.manage-specialty'),
-        //             }
-        //         ],
-        //     },
-        // },
-        //  {
-        //     title: t('menu.admin.handbook'),
-        //     children: {
-        //         title: 'Handbook',
-        //         data: [
-        //             {
-        //                 type: 'Handbook',
-        //                 to : '/system/manage-handbook',
-        //                 title: t('menu.admin.manage-handbook'),
-        //             }
-        //         ],
-        //     },
-        // },
+          {
+            title: 'menu.admin.clinic',
+            children: {
+                title: 'clinic',
+                data: [
+                    {
+                        type: 'clinic',
+                        to : '/system/manager-clinic',
+                        title: 'menu.admin.manage-clinic',
+                    }
+                ],
+            },
+        },
+          {
+            title: 'menu.admin.specialty',
+            children: {
+                title: 'special',
+                data: [
+                    {
+                        type: 'special',
+                        to : '/system/manager-special',
+                        title: 'menu.admin.manage-specialty',
+                    }
+                ],
+            },
+        },
+         {
+            title: 'menu.admin.handbook',
+            children: {
+                title: 'Handbook',
+                data: [
+                    {
+                        type: 'Handbook',
+                        to : '/system/manage-handbook',
+                        title: 'menu.admin.manage-handbook',
+                    }
+                ],
+            },
+        },
     
     ];
         const store = useStore();
@@ -104,6 +112,9 @@ export default {
             callSetLangActions
         };
     },
+    components: {
+        Menulist
+    }
 };
 </script>
 

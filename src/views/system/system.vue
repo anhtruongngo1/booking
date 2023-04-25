@@ -1,17 +1,14 @@
 <template>
-    <div class="bg-white w-[100vw] h-[100vh]">
-
-    </div>
+       <router-view></router-view>
 </template>
 
 <script>
-import Menu from '@/layout/Menu/Menu.vue';
 export default {
     setup() {
         
     },
     components: {
-        Menu
+ 
     }
 
 }

@@ -117,7 +117,7 @@
 <script>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import useLogin from '@/services/service';
+import useLogin from '@/services/loginService';
 export default {
     name: 'login',
     setup() {

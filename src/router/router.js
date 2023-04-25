@@ -27,7 +27,21 @@ const routes = [
         meta: {
             layout : 'auth'
         } ,
-        component: ()=> import(/* webpackChunkName : "home" */ "@/views/system/system.vue")
+        component: () => import(/* webpackChunkName : "home" */ "@/views/system/system.vue"),
+        children: [
+            {
+              // UserProfile will be rendered inside User's <router-view>
+              // when /user/:id/profile is matched
+              path: 'manager-account',
+              component: () => import(/* webpackChunkName : "home" */ "@/views/system/manager-user/managerUser.vue"),
+            },
+            // {
+            //   // UserPosts will be rendered inside User's <router-view>
+            //   // when /user/:id/posts is matched
+            //   path: 'posts',
+            //   component: UserPosts,
+            // },
+          ],
     },
     // {
     //     path: "/:pathMatch(.*)*",

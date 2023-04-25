@@ -1,7 +1,7 @@
 <template>
     <Menu />
     <div class="fixed">
-        auth layout
+  
     </div>
     <slot />
 </template>
